@@ -11,7 +11,7 @@ A full-stack project built with **React, Redux Toolkit Query (RTK Query), TypeSc
 ## 🚀 Live Demo
 
 <div align="center">
-  <a href="https://your-vercel-deployment-link.com" target="_blank">
+  <a href="https://library-management-system-rgzp.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/Live-Demo-green?style=for-the-badge&logo=vercel" alt="Live Demo"/>
   </a>
 </div>
