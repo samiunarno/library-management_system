@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
-import { useGetBookQuery, useBorrowBookMutation } from '../store/api';
-import { LoadingSpinner } from '../components/LoadingSpinner';
-import { BookOpen, Calendar, Hash, ArrowLeft } from 'lucide-react';
-import toast from 'react-hot-toast';
+import React, { useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { useGetBookQuery, useBorrowBookMutation } from "../store/api";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { BookOpen, Calendar, Hash, ArrowLeft } from "lucide-react";
+import toast from "react-hot-toast";
 
 export const BorrowBook: React.FC = () => {
   const { bookId } = useParams<{ bookId: string }>();
@@ -12,7 +12,7 @@ export const BorrowBook: React.FC = () => {
   const [borrowBook, { isLoading: isBorrowing }] = useBorrowBookMutation();
   const [formData, setFormData] = useState({
     quantity: 1,
-    dueDate: '',
+    dueDate: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,18 +23,18 @@ export const BorrowBook: React.FC = () => {
         quantity: formData.quantity,
         dueDate: formData.dueDate,
       }).unwrap();
-      toast.success('Book borrowed successfully');
-      navigate('/borrow-summary');
-    } catch (error: any) {
-      toast.error(error.data?.message || 'Failed to borrow book');
+      toast.success("Book borrowed successfully");
+      navigate("/borrow-summary");
+    } catch {
+      toast.error("Failed to borrow book");
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: name === 'quantity' ? parseInt(value) || 1 : value,
+      [name]: name === "quantity" ? parseInt(value) || 1 : value,
     }));
   };
 
@@ -44,7 +44,7 @@ export const BorrowBook: React.FC = () => {
   // Get tomorrow's date as minimum due date
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const minDate = tomorrow.toISOString().split('T')[0];
+  const minDate = tomorrow.toISOString().split("T")[0];
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -64,7 +64,9 @@ export const BorrowBook: React.FC = () => {
             <BookOpen className="h-12 w-12 text-white" />
             <div>
               <h1 className="text-2xl font-bold text-white">Borrow Book</h1>
-              <p className="text-green-100 mt-1">Fill in the borrowing details</p>
+              <p className="text-green-100 mt-1">
+                Fill in the borrowing details
+              </p>
             </div>
           </div>
         </div>
@@ -74,10 +76,13 @@ export const BorrowBook: React.FC = () => {
             <div className="flex items-center space-x-4">
               <BookOpen className="h-10 w-10 text-indigo-600" />
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">{book.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {book.title}
+                </h3>
                 <p className="text-gray-600">by {book.author}</p>
                 <p className="text-sm text-gray-500 mt-1">
-                  Available copies: <span className="font-semibold">{book.copies}</span>
+                  Available copies:{" "}
+                  <span className="font-semibold">{book.copies}</span>
                 </p>
               </div>
             </div>
@@ -85,7 +90,10 @@ export const BorrowBook: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="quantity"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 <Hash className="h-4 w-4 inline mr-1" />
                 Quantity *
               </label>
@@ -107,7 +115,10 @@ export const BorrowBook: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="dueDate"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 <Calendar className="h-4 w-4 inline mr-1" />
                 Due Date *
               </label>
@@ -139,7 +150,7 @@ export const BorrowBook: React.FC = () => {
                 className="flex items-center space-x-2 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
               >
                 <BookOpen className="h-5 w-5" />
-                <span>{isBorrowing ? 'Borrowing...' : 'Borrow Book'}</span>
+                <span>{isBorrowing ? "Borrowing..." : "Borrow Book"}</span>
               </button>
             </div>
           </form>

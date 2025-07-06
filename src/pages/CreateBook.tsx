@@ -23,7 +23,7 @@ export const CreateBook: React.FC = () => {
       await createBook(formData).unwrap();
       toast.success("Book created successfully");
       navigate("/");
-    } catch (error) {
+    } catch {
       toast.error("Failed to create book");
     }
   };

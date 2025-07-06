@@ -2,15 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useGetBookQuery } from "../store/api";
 import { LoadingSpinner } from "../components/LoadingSpinner";
-import {
-  BookOpen,
-  User,
-  Tag,
-  Hash,
-  Calendar,
-  Edit,
-  ArrowLeft,
-} from "lucide-react";
+import { BookOpen, Tag, Hash, Calendar, Edit, ArrowLeft } from "lucide-react";
 
 export const BookDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

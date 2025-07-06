@@ -38,7 +38,7 @@ export const EditBook: React.FC = () => {
       await updateBook({ id: id!, book: formData }).unwrap();
       toast.success('Book updated successfully');
       navigate('/');
-    } catch (error) {
+    } catch  {
       toast.error('Failed to update book');
     }
   };
