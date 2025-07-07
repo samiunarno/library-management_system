@@ -38,15 +38,21 @@ export interface BorrowSummary {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
+    baseUrl: 'https://library-management-system-one-red.vercel.app/api',
   }),
   tagTypes: ['Book', 'BorrowSummary'],
   endpoints: (builder) => ({
     // Books
+    // getBooks: builder.query<Book[], void>({
+    //   query: () => '/books',
+    //   providesTags: ['Book'],
+    // }),
     getBooks: builder.query<Book[], void>({
       query: () => '/books',
+      transformResponse: (response: { success: boolean; message: string; data: Book[] }) => response.data,
       providesTags: ['Book'],
     }),
+
     getBook: builder.query<Book, string>({
       query: (id) => `/books/${id}`,
       providesTags: ['Book'],

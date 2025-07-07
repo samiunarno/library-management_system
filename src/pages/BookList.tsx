@@ -31,6 +31,7 @@ export const BookList: React.FC = () => {
 
   if (isLoading) return <LoadingSpinner />;
   if (error) return <div className="text-red-600 p-4">Error loading books</div>;
+  
 
   return (
     <div className="space-y-6">
