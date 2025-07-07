@@ -16,12 +16,13 @@ export const EditBook: React.FC = () => {
     genre: '',
     isbn: '',
     description: '',
-    copies: 1,
+    copies: 0,
   });
 
   useEffect(() => {
     if (book) {
       setFormData({
+      
         title: book.title,
         author: book.author,
         genre: book.genre,
@@ -50,6 +51,7 @@ export const EditBook: React.FC = () => {
       [name]: name === 'copies' ? parseInt(value) || 1 : value,
     }));
   };
+  console.log(formData);
 
   if (isLoadingBook) return <LoadingSpinner />;
   if (!book) return <div className="text-gray-600 p-4">Book not found</div>;

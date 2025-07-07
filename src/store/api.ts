@@ -55,6 +55,7 @@ export const api = createApi({
 
     getBook: builder.query<Book, string>({
       query: (id) => `/books/${id}`,
+       transformResponse: (response: { success: boolean; message: string; data: Book }) => response.data,
       providesTags: ['Book'],
     }),
     createBook: builder.mutation<Book, CreateBookRequest>({
@@ -66,13 +67,15 @@ export const api = createApi({
       invalidatesTags: ['Book'],
     }),
     updateBook: builder.mutation<Book, { id: string; book: Partial<CreateBookRequest> }>({
-      query: ({ id, book }) => ({
-        url: `/books/${id}`,
-        method: 'PUT',
-        body: book,
-      }),
-      invalidatesTags: ['Book'],
-    }),
+  query: ({ id, book }) => ({
+    url: `/books/${id}`,
+    method: 'PUT',
+    body: book,
+  }),
+  invalidatesTags: ['Book'],
+}),
+
+    
     deleteBook: builder.mutation<{ message: string }, string>({
       query: (id) => ({
         url: `/books/${id}`,

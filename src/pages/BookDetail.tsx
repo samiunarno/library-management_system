@@ -8,6 +8,8 @@ export const BookDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, error } = useGetBookQuery(id!);
 
+  console.log(book);
+
   if (isLoading) return <LoadingSpinner />;
   if (error)
     return <div className="text-red-600 p-4">Error loading book details</div>;
