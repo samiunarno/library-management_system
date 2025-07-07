@@ -67,11 +67,11 @@ export const api = createApi({
       invalidatesTags: ['Book'],
     }),
     updateBook: builder.mutation<Book, { id: string; book: Partial<CreateBookRequest> }>({
-  query: ({ id, book }) => ({
-    url: `/books/${id}`,
-    method: 'PUT',
-    body: book,
-  }),
+    query: ({ id, book }) => ({
+      url: `/books/${id}`,
+      method: 'PUT',
+      body: book,
+    }),
   invalidatesTags: ['Book'],
 }),
 

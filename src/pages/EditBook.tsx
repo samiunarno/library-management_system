@@ -32,11 +32,14 @@ export const EditBook: React.FC = () => {
       });
     }
   }, [book]);
+  
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await updateBook({ id: id!, book: formData }).unwrap();
+      const  res = await updateBook({ id: id!, book: formData }).unwrap();
+      console.log(res);
       toast.success('Book updated successfully');
       navigate('/');
     } catch  {
